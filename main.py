@@ -6,7 +6,7 @@ import pygame
 
 Dimension = namedtuple("Dimension", ["width", "height"])
 Grid = namedtuple("Grid", ["dimension", "cells"])
-Neighbours = namedtuple("Neighbours", ["alive", "dead"])
+Neighbors = namedtuple("Neighbors", ["alive", "dead"])
 
 GOSPER_GLIDER = Grid(
     Dimension(50, 50),
@@ -50,4 +50,8 @@ GOSPER_GLIDER = Grid(
     },
 )
 
-def get_neighbors 
+def get_neighbors(grid: Grid, x: int, y: int) -> Neighbors:
+    # loops through all cells in GOSPER_GLIDER (all active) and figures out how many neighbors it has
+    # that way we can decide if it stays active or dies
+    offsets = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
+    possible_neighbors = {}
