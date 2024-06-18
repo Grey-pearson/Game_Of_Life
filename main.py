@@ -4,12 +4,12 @@ from collections import defaultdict, namedtuple
 from copy import deepcopy
 import pygame
 
-Dim = namedtuple("Dimension", ["width", "height"])
-Grid = namedtuple("Grid", ["dim", "cells"])
+Dimension = namedtuple("Dimension", ["width", "height"])
+Grid = namedtuple("Grid", ["dimension", "cells"])
 Neighbours = namedtuple("Neighbours", ["alive", "dead"])
 
 GOSPER_GLIDER = Grid(
-    Dim(50, 50),
+    Dimension(50, 50),
     {
         (22, 8),
         (12, 7),
