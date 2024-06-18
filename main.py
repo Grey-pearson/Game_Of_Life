@@ -49,3 +49,4 @@ GOSPER_GLIDER = Grid(
         (21, 7),
     },
 )
+
