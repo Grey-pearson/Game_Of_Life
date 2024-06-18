@@ -54,4 +54,7 @@ def get_neighbors(grid: Grid, x: int, y: int) -> Neighbors:
     # loops through all cells in GOSPER_GLIDER (all active) and figures out how many neighbors it has
     # that way we can decide if it stays active or dies
     offsets = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
-    possible_neighbors = {}
+    possible_neighbors = {(x + x_add, y + y_add) for x_add, y_add in offsets} # looping thorugh offsets
+    alive = {(pos[0], pos[1]) for pos in possible_neighbors if pos in grid.cells}
+    return Neighbors(alive, possible_neighbors - alive)
+
