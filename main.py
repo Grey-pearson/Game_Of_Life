@@ -75,3 +75,41 @@ def update_grid(grid: Grid) -> Grid:
         new_cells.add((pos[0], pos[1]))
     
     return Grid(grid.dimension, new_cells)
+
+def draw_grid(screen: pygame.Surface, grid: Grid) -> None:
+    # draws the grid on the pygame.Surface object
+    cell_width = screen.get_width() / grid.dimension.width
+    cell_height = screen.get_height() / grid.dimension.width
+    border_size = 2
+
+    for x, y in grid.cells:
+        pygame.draw.rect(
+            screen,
+            (45,200,150),
+            (
+                x * cell_width + border_size,
+                y * cell_height + border_size,
+                cell_height - border_size,
+                cell_height - border_size,
+            ),
+        )
+
+def main():
+    # we here finally 
+    grid = GOSPER_GLIDER
+
+    pygame.init()
+    screen = pygame.display.set_mode((400,400))
+
+    while True:
+        if pygame.QUIT in [e.type for e in pygame.event.get()]:
+            sys.exit(0)
+
+        screen.fill(0,0,0)
+        draw_grid(screen, grid)
+        grid = update_grid(grid)
+        pygame.display.flip()
+        time.sleep(0.1)
+
+if __name__ == "__main__":
+    main()
