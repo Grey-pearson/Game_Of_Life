@@ -105,7 +105,7 @@ def main():
         if pygame.QUIT in [e.type for e in pygame.event.get()]:
             sys.exit(0)
 
-        screen.fill(0,0,0)
+        screen.fill((0,0,0))
         draw_grid(screen, grid)
         grid = update_grid(grid)
         pygame.display.flip()
