@@ -50,3 +50,4 @@ GOSPER_GLIDER = Grid(
     },
 )
 
+def get_neighbors 
