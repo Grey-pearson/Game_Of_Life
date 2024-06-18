@@ -58,3 +58,20 @@ def get_neighbors(grid: Grid, x: int, y: int) -> Neighbors:
     alive = {(pos[0], pos[1]) for pos in possible_neighbors if pos in grid.cells}
     return Neighbors(alive, possible_neighbors - alive)
 
+def update_grid(grid: Grid) -> Grid:
+    # takes last iteration of grid then generates new grid after rules are applied
+    new_cells = deepcopy(grid.cells)
+    undead = defaultdict(int)
+
+    for x, y in grid.cells: 
+        alive_neighbors, dead_neighbors = get_neighbors(grid, x, y)
+        if len(alive_neighbors) not in [2,3]:
+            new_cells.remove((x,y))
+
+        for pos in dead_neighbors:
+            undead[pos] += 1
+
+    for pos, _ in filter(lambda elem: elem[1] == 3, undead.items()):
+        new_cells.add((pos[0], pos[1]))
+    
+    return Grid(grid.dimension, new_cells)
